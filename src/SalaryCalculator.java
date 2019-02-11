@@ -20,7 +20,7 @@ public class SalaryCalculator
 
 		JLabel salary = new JLabel();
 		salary.setSize(150, 20);
-		salary.setLocation(new Point(80, 135));
+		salary.setLocation(new Point(280, 135));
 		myFrame.add(salary);
 
 		
@@ -44,7 +44,22 @@ public class SalaryCalculator
 		hours.setLocation(new Point(120, 75));
 		myFrame.add(hours);
 		
-		JCheckBox
+		JCheckBox fullTime = new JCheckBox("Full Time");
+		fullTime.setSize(200, 25);
+		fullTime.setLocation(new Point(10, 105));
+		fullTime.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent l)
+					{
+						if(fullTime.isSelected())
+						{
+							hours.setEditable(false);
+						}
+						else
+							hours.setEditable(true);
+					}
+				});
+		myFrame.add(fullTime);
 
 		JButton calculate = new JButton("Calculate");
 		calculate.setSize(100, 20);
@@ -53,7 +68,12 @@ public class SalaryCalculator
 				{
 					public void actionPerformed(ActionEvent e) 
 					{
-						salary.setText("" + Double.parseDouble(rate.getText())*Double.parseDouble(hours.getText()));
+						if(fullTime.isSelected())
+						{
+							salary.setText("$" + Double.parseDouble(rate.getText())*40);
+						}
+						else
+							salary.setText("$" + Double.parseDouble(rate.getText())*Double.parseDouble(hours.getText()));
 					}
 			
 				});
